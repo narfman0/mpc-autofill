@@ -191,10 +191,8 @@ def main(
     os.chdir(working_directory)
     create_image_directory_if_not_exists(working_directory=working_directory)
 
-    if binary_location and not os.path.isdir(binary_location):
-        raise Exception(
-            f"Binary location was specified but is not a directory (or it doesn't exist): {bold(binary_location)}"
-        )
+    if binary_location and not os.path.exists(binary_location):
+        raise Exception(f"Binary location was specified but doesn't exist: {bold(binary_location)}")
 
     configure_loggers(
         working_directory=working_directory,
