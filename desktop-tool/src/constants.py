@@ -76,7 +76,12 @@ class Browsers(Enum):
     chrome = member(partial(wd.get_chrome_driver))
     brave = member(partial(wd.get_brave_driver))
     edge = member(partial(wd.get_edge_driver))
-    # TODO: add support for firefox
+    firefox = member(partial(wd.get_firefox_driver))
+
+    @property
+    def detaches(self) -> bool:
+        # the chromium-based browsers are configured with `detach`; geckodriver closes firefox with the session
+        return self is not Browsers.firefox
 
 
 # Google Drive API constants

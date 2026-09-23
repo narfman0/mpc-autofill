@@ -71,12 +71,12 @@ def get_edge_driver(headless: bool = False, binary_location: Optional[str] = Non
     return driver
 
 
-# note: firefox is not currently supported
 def get_firefox_driver(headless: bool = False, binary_location: Optional[str] = None) -> Firefox:
+    # unlike the chromium-based browsers above, firefox has no `detach` option (geckodriver closes the
+    # browser with the session) and no support for `set_network_conditions`, which is a CDP feature.
     options = FirefoxOptions()
-    options.add_argument("--log-level=3")
     if headless:
-        options.add_argument("--headless")
+        options.add_argument("-headless")
     if binary_location is not None:
         options.binary_location = binary_location
     driver = Firefox(options=options)

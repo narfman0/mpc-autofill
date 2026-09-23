@@ -219,7 +219,7 @@ class AutofillDriver:
         "selenium.common.exceptions.JavaScriptException: Message: javascript error: setMode is not defined"
         """
 
-        return self.driver.execute_script(f"javascript:{'return ' if return_ else ''}{js}")  # type: ignore
+        return self.driver.execute_script(f"{'return ' if return_ else ''}{js}")  # type: ignore
 
     @alert_handler
     @exception_retry_skip_handler
